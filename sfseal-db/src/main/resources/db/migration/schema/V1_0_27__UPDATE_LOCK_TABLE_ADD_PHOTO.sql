@@ -1,0 +1,20 @@
+-- alter table sfseal_company.lock
+--     add lock_photo text;
+--
+-- comment on column sfseal_company.lock.lock_photo is '施封照片';
+--
+-- alter table sfseal_company.lock
+--     add unlock_photo text;
+--
+-- comment on column sfseal_company.lock.unlock_photo is '拆封照片';
+--
+-- alter table sfseal_company.work_order rename column attachment_id to attachment;
+--
+-- comment on column sfseal_company.work_order.attachment is '运单附件';
+--
+-- alter table sfseal_company.work_order alter column attachment type text using attachment::text;
+--
+-- alter table sfseal_company.work_order_history rename column attachment_id to attachment;
+--
+-- alter table sfseal_company.work_order_history alter column attachment type text using attachment::text;
+--

@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+sfseal:
+  datasource:
+    jdbc-url: jdbc:postgresql://localhost:5432/sfseal
+    username: Andy01
+    password: Andy01
+#    username: sfseal
+#    password: 1q2w3e4r%
+    maximum-pool-size: 30
+    driver-class-name: org.postgresql.Driver
+  user:
+    user-picture-size-max: 10485760
+    user-picture-size-baseline: 204800
+
+oauth2:
+  clientID: wanyun_user
+  authorizedGrantTypes:
+    - password
+    - wechat_id
+  scopes: trust
+  keystorePath: classpath:local.jks
+  keystorePassword: mypass
+  keyPairAlias: local
+  keyPairPassword: mypass
+  accessTokenValidity: 10800
+

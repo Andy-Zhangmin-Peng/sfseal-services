@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyun.sfseal.db.mapper.user.UserModelMapper">
+    <resultMap id="BaseResultMap" type="com.wanyun.sfseal.db.model.user.UserModel">
+        <!--@mbg.generated-->
+        <!--@Table sfseal_user.user-->
+        <id column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="account_id" jdbcType="BIGINT" property="accountId"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="is_active" jdbcType="BOOLEAN" property="isActive"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate"/>
+        <result column="last_update_user" jdbcType="VARCHAR" property="lastUpdateUser"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        user_id, "name", account_id, address, mobile, is_active, create_date, last_update_date,
+        last_update_user
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from sfseal_user.user
+        where user_id = #{userId,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from sfseal_user.user
+        where user_id = #{userId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="user_id" keyProperty="userId"
+            parameterType="com.wanyun.sfseal.db.model.user.UserModel" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sfseal_user.user ("name", account_id, address, mobile,
+        is_active, create_date, last_update_date,
+        last_update_user)
+        values (#{name,jdbcType=VARCHAR}, #{accountId,jdbcType=BIGINT}, #{address,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
+        #{isActive,jdbcType=BOOLEAN}, #{createDate,jdbcType=TIMESTAMP}, #{lastUpdateDate,jdbcType=TIMESTAMP},
+        #{lastUpdateUser,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="user_id" keyProperty="userId"
+            parameterType="com.wanyun.sfseal.db.model.user.UserModel" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sfseal_user.user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                "name",
+            </if>
+            <if test="accountId != null">
+                account_id,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="isActive != null">
+                is_active,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="lastUpdateDate != null">
+                last_update_date,
+            </if>
+            <if test="lastUpdateUser != null">
+                last_update_user,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="accountId != null">
+                #{accountId,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="isActive != null">
+                #{isActive,jdbcType=BOOLEAN},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateDate != null">
+                #{lastUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateUser != null">
+                #{lastUpdateUser,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.wanyun.sfseal.db.model.user.UserModel">
+        <!--@mbg.generated-->
+        update sfseal_user.user
+        <set>
+            <if test="name != null">
+                "name" = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="accountId != null">
+                account_id = #{accountId,jdbcType=BIGINT},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="isActive != null">
+                is_active = #{isActive,jdbcType=BOOLEAN},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateDate != null">
+                last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateUser != null">
+                last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.wanyun.sfseal.db.model.user.UserModel">
+        <!--@mbg.generated-->
+        update sfseal_user.user
+        set "name" = #{name,jdbcType=VARCHAR},
+        account_id = #{accountId,jdbcType=BIGINT},
+        address = #{address,jdbcType=VARCHAR},
+        mobile = #{mobile,jdbcType=VARCHAR},
+        is_active = #{isActive,jdbcType=BOOLEAN},
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+        last_update_user = #{lastUpdateUser,jdbcType=VARCHAR}
+        where user_id = #{userId,jdbcType=BIGINT}
+    </update>
+
+    <select id="selectBasicUserByAccountId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        sfseal_user."user"
+        where
+        account_id = #{accountId,jdbcType=BIGINT}
+    </select>
+    <select id="getUsersByCondition" resultMap="BaseResultMap">
+        select
+            u.user_id,
+            u."name",
+            u.account_id,
+            u.address,
+            u.mobile,
+            u.is_active,
+            u.create_date,
+            u.last_update_date,
+            u.last_update_user
+        from
+            sfseal_user."user" u
+        left join
+            sfseal_company.company_account_xref cax
+        on
+            u.account_id = cax.account_id
+        where
+            cax.company_id = #{companyId,jdbcType=BIGINT}
+        AND
+            u.is_active = true
+        <if test="name != null">
+            AND
+                u.name = #{name,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <update id="inactiveUserByAccountId">
+        update
+            sfseal_user."user"
+        set
+            is_active = false,
+            last_update_date = current_timestamp,
+            last_update_user = #{lastUpdateUser,jdbcType=VARCHAR}
+        where
+            account_id = #{accountId,jdbcType=BIGINT}
+    </update>
+</mapper>

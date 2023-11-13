@@ -1,0 +1,1 @@
+alter table sfseal_company.exceptional_situation alter column tran_id type varchar(50) using tran_id::varchar(50);

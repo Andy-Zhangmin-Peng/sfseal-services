@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyun.sfseal.db.mapper.company.CompanyModelMapper">
+  <resultMap id="BaseResultMap" type="com.wanyun.sfseal.db.model.company.CompanyModel">
+    <!--@mbg.generated-->
+    <!--@Table sfseal_company.company-->
+    <id column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="last_update_user" jdbcType="VARCHAR" property="lastUpdateUser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    company_id, company_name, phone_number, address, email, create_date, last_update_date, 
+    last_update_user
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sfseal_company.company
+    where company_id = #{companyId,jdbcType=BIGINT}
+  </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sfseal_company.company
+    where company_id = #{companyId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="company_id" keyProperty="companyId" parameterType="com.wanyun.sfseal.db.model.company.CompanyModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.company (company_name, phone_number, address,
+      email, create_date, last_update_date, 
+      last_update_user)
+    values (#{companyName,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{lastUpdateDate,jdbcType=TIMESTAMP}, 
+      #{lastUpdateUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="company_id" keyProperty="companyId" parameterType="com.wanyun.sfseal.db.model.company.CompanyModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyName != null">
+        company_name,
+      </if>
+      <if test="phoneNumber != null">
+        phone_number,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null">
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanyun.sfseal.db.model.company.CompanyModel">
+    <!--@mbg.generated-->
+    update sfseal_company.company
+    <set>
+      <if test="companyName != null">
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null">
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where company_id = #{companyId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanyun.sfseal.db.model.company.CompanyModel">
+    <!--@mbg.generated-->
+    update sfseal_company.company
+    set company_name = #{companyName,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      last_update_user = #{lastUpdateUser,jdbcType=VARCHAR}
+    where company_id = #{companyId,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    SELECT
+        <include refid="Base_Column_List"/>
+    FROM
+        sfseal_company.company
+    where company_id >  1
+  </select>
+  <select id="selectCompanyByAccountId" resultMap="BaseResultMap">
+    SELECT
+        company.company_id,
+        company.company_name,
+        company.phone_number,
+        company.address,
+        company.email,
+        company.create_date,
+        company.last_update_date,
+        company.last_update_user
+    FROM
+        sfseal_company.company company
+    INNER JOIN
+        sfseal_company.company_account_xref cax
+    ON
+        company.company_id = cax.company_id
+    WHERE
+        cax.account_id = #{accountId,jdbcType=BIGINT}
+  </select>
+
+  <select id="getCompaniesByCondition" resultMap="BaseResultMap">
+      SELECT
+        <include refid="Base_Column_List"/>
+      FROM
+        sfseal_company.company
+      <where>
+        <if test="companyName != null and companyName != ''">
+          company_name ILIKE concat('%',#{companyName},'%')
+        </if>
+      </where>
+  </select>
+
+  <select id="checkValueExisting" resultType="java.lang.Integer">
+    select
+    count (company_id)
+    from
+    sfseal_company.company
+    <where>
+      <if test="valueType == 'email'">
+        email = #{value,jdbcType=VARCHAR}
+      </if>
+      <if test="valueType == 'companyName'">
+        AND
+        company_name = #{value,jdbcType=VARCHAR}
+      </if>
+      <if test="valueType == 'phoneNumber'">
+        AND
+        phone_number = #{value,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+    <select id="getAllInventoryByCondition" resultType="com.wanyun.sfseal.db.model.company.InventoryModel">
+      SELECT
+        company.company_name AS companyName,
+        dispense.last_update_date AS latestPurchaseDate,
+        dispense.dispense_count AS  latestPurchaseCount,
+        t.unusedCount
+      FROM
+        (
+          SELECT
+            count(distinct (lock.rfid)) AS unusedCount,
+            clx.company_id
+          FROM
+            sfseal_company.lock lock
+          INNER JOIN
+            sfseal_company.company_lock_xref clx
+          ON
+            lock.rfid = clx.rfid
+                AND clx.is_active = true
+          WHERE
+            lock.status_code = 10003
+          GROUP BY clx.company_id
+        ) t
+          INNER JOIN
+        (
+          select
+            company_id,
+            dispense_count,
+            last_update_date
+          from
+            sfseal_company.dispense_record
+          where
+              last_update_date  in (select max(last_update_date) from sfseal_company.dispense_record where is_active = true group by company_id)
+        ) dispense
+        ON
+            t.company_id = dispense.company_id
+        INNER JOIN
+            sfseal_company.company company
+        ON
+            company.company_id = t.company_id
+        where
+         company.company_id > 1
+       <if test="companyName != null">
+         AND
+         company.company_name ILIKE concat('%',#{companyName},'%')
+       </if>
+      <if test="unusedCount != null and unusedCount != 0">
+        AND
+        t.unusedCount <![CDATA[<= ]]> #{unusedCount}
+      </if>
+    </select>
+  <select id="getCurrentyUserInventory" resultType="com.wanyun.sfseal.db.model.company.InventoryModel">
+    SELECT
+        (
+          SELECT count(*) FROM sfseal_company.lock lock
+                            INNER JOIN sfseal_company.company_lock_xref clx
+                                       ON lock.rfid = clx.rfid
+                                         AND  clx.is_active = true
+         WHERE status_code = 10003 AND clx.company_id = #{companyId,jdbcType=BIGINT}
+        ) AS unusedCount,
+        (
+          SELECT count(*) FROM sfseal_company.lock lock
+          INNER JOIN sfseal_company.company_lock_xref clx
+          ON lock.rfid = clx.rfid and clx.is_active = true
+          WHERE status_code IN (10004,10005) AND clx.company_id = #{companyId,jdbcType=BIGINT}
+        ) AS usedCount,
+      (
+        SELECT count( distinct(rfid))
+        FROM
+            sfseal_company.company_lock_xref
+        WHERE company_id = #{companyId,jdbcType=BIGINT} and is_active = true
+      ) AS purchaseCount,
+      (
+        SELECT
+            dispense_count
+        from
+            sfseal_company.dispense_record
+        where
+            last_update_date  in (select max(last_update_date) from sfseal_company.dispense_record where is_active = true and company_id = #{companyId,jdbcType=BIGINT})
+      ) AS latestPurchaseCount
+  </select>
+</mapper>

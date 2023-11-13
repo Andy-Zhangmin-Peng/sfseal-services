@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyun.sfseal.db.mapper.company.LockModelMapper">
+  <resultMap id="BaseResultMap" type="com.wanyun.sfseal.db.model.company.LockModel">
+    <!--@mbg.generated-->
+    <!--@Table sfseal_company.lock-->
+    <id column="rfid" jdbcType="VARCHAR" property="rfid" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="last_update_user" jdbcType="VARCHAR" property="lastUpdateUser" />
+    <result column="box_id" jdbcType="VARCHAR" property="boxId" />
+    <result column="bar_code" jdbcType="VARCHAR" property="barCode" />
+    <result column="status_code" jdbcType="BIGINT" property="statusCode" />
+    <result column="lock_position" jdbcType="VARCHAR" property="lockPosition" />
+    <result column="lock_user_id" jdbcType="BIGINT" property="lockUserId" />
+    <result column="unlock_user_id" jdbcType="BIGINT" property="unlockUserId" />
+    <result column="tran_id" jdbcType="BIGINT" property="tranId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="display_key" jdbcType="VARCHAR" property="statusName" />
+    <result column="lockUserName" jdbcType="VARCHAR" property="lockAccountName" />
+    <result column="unLockUserName" jdbcType="VARCHAR" property="unLockAccountName" />
+    <result column="transportName" jdbcType="VARCHAR" property="transportName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    rfid, create_date, last_update_date, last_update_user, box_id, bar_code, status_code,
+    lock_position, lock_user_id, unlock_user_id, tran_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from sfseal_company.lock
+    where rfid = #{rfid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from sfseal_company.lock
+    where rfid = #{rfid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="rfid" keyProperty="rfid" parameterType="com.wanyun.sfseal.db.model.company.LockModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.lock (create_date, last_update_date, last_update_user,
+      box_id, bar_code, status_code,
+      lock_position, lock_user_id, unlock_user_id,
+      tran_id
+      )
+    values (#{createDate,jdbcType=TIMESTAMP}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{lastUpdateUser,jdbcType=VARCHAR},
+      #{boxId,jdbcType=VARCHAR}, #{barCode,jdbcType=VARCHAR}, #{statusCode,jdbcType=BIGINT},
+      #{lockPosition,jdbcType=VARCHAR}, #{lockUserId,jdbcType=BIGINT}, #{unlockUserId,jdbcType=BIGINT},
+      #{tranId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="rfid" keyProperty="rfid" parameterType="com.wanyun.sfseal.db.model.company.LockModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.lock
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user,
+      </if>
+      <if test="boxId != null">
+        box_id,
+      </if>
+      <if test="barCode != null">
+        bar_code,
+      </if>
+      <if test="statusCode != null">
+        status_code,
+      </if>
+      <if test="lockPosition != null">
+        lock_position,
+      </if>
+      <if test="lockUserId != null">
+        lock_user_id,
+      </if>
+      <if test="unlockUserId != null">
+        unlock_user_id,
+      </if>
+      <if test="tranId != null">
+        tran_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="boxId != null">
+        #{boxId,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCode != null">
+        #{statusCode,jdbcType=BIGINT},
+      </if>
+      <if test="lockPosition != null">
+        #{lockPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="lockUserId != null">
+        #{lockUserId,jdbcType=BIGINT},
+      </if>
+      <if test="unlockUserId != null">
+        #{unlockUserId,jdbcType=BIGINT},
+      </if>
+      <if test="tranId != null">
+        #{tranId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanyun.sfseal.db.model.company.LockModel">
+    <!--@mbg.generated-->
+    update sfseal_company.lock
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="boxId != null">
+        box_id = #{boxId,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        bar_code = #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCode != null">
+        status_code = #{statusCode,jdbcType=BIGINT},
+      </if>
+      <if test="lockPosition != null">
+        lock_position = #{lockPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="lockUserId != null">
+        lock_user_id = #{lockUserId,jdbcType=BIGINT},
+      </if>
+      <if test="unlockUserId != null">
+        unlock_user_id = #{unlockUserId,jdbcType=BIGINT},
+      </if>
+      <if test="tranId != null">
+        tran_id = #{tranId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where rfid = #{rfid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanyun.sfseal.db.model.company.LockModel">
+    <!--@mbg.generated-->
+    update sfseal_company.lock
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      box_id = #{boxId,jdbcType=VARCHAR},
+      bar_code = #{barCode,jdbcType=VARCHAR},
+      status_code = #{statusCode,jdbcType=BIGINT},
+      lock_position = #{lockPosition,jdbcType=VARCHAR},
+      lock_user_id = #{lockUserId,jdbcType=BIGINT},
+      unlock_user_id = #{unlockUserId,jdbcType=BIGINT},
+      tran_id = #{tranId,jdbcType=BIGINT}
+    where rfid = #{rfid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getLocksByCondition" resultMap="BaseResultMap">
+    SELECT
+      lock.rfid,
+      lock.box_id,
+      lock.bar_code,
+      lock.status_code,
+      lock.lock_position,
+      lock.create_date,
+      lock.last_update_date,
+      lock.last_update_user,
+      company.company_id,
+      company.company_name,
+      reference.display_key
+    FROM
+        sfseal_company.lock lock
+    LEFT JOIN
+        sfseal_company.company_lock_xref clx
+    ON
+        lock.rfid = clx.rfid and clx.is_active = true
+    LEFT JOIN
+        sfseal_company.company company
+    ON
+        company.company_id = clx.company_id
+    LEFT JOIN
+        sfseal_reference.reference_data reference
+    ON
+        reference.id = lock.status_code
+    <where>
+      <if test="companyIdList.size() &gt; 0">
+        AND
+        company.company_id IN
+        <foreach close=")" collection="companyIdList" index="index" item="item" open="(" separator=",">
+          #{item}
+        </foreach>
+      </if>
+      <if test="companyId != null ">
+        AND
+        company.company_id = #{companyId,jdbcType=BIGINT}
+        AND
+        clx.is_active = true
+      </if>
+      <if test="lockStatusIdList.size() &gt; 0">
+        AND
+        reference.id IN
+        <foreach close=")" collection="lockStatusIdList" index="index" item="item" open="(" separator=",">
+          #{item}
+        </foreach>
+      </if>
+      <if test="statusCode != null">
+        AND
+        lock.status_code = #{statusCode,jdbcType=BIGINT}
+      </if>
+      <if test="barCode != null ">
+        AND
+            lock.bar_code = #{barCode,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  <select id="getPurchLockRfids" resultType="java.lang.String">
+    select
+        rfid
+    from
+        sfseal_company.lock
+    where
+        status_code = 10001
+    and
+        box_id = 'TestOrder'
+    order by bar_code desc limit #{purchCount,jdbcType=BIGINT};
+  </select>
+
+  <insert id="addInBatch">
+    insert into sfseal_company.lock (
+        create_date,
+        last_update_date,
+        last_update_user,
+        rfid,
+        box_id,
+        bar_code,
+        status_code)
+    values
+        <foreach collection="records" index="index" item="item" separator=",">
+          (
+            #{item.createDate,jdbcType=TIMESTAMP},
+            #{item.lastUpdateDate,jdbcType=TIMESTAMP},
+            #{item.lastUpdateUser,jdbcType=VARCHAR},
+            #{item.rfid,jdbcType=VARCHAR},
+            #{item.boxId,jdbcType=VARCHAR},
+            #{item.barCode,jdbcType=VARCHAR},
+            #{item.statusCode,jdbcType=BIGINT}
+          )
+        </foreach>
+  </insert>
+  <update id="updateLockStatus">
+    update
+        sfseal_company.lock
+    set
+      status_code = #{statusCode,jdbcType=BIGINT},
+      last_update_user = #{updateUser,jdbcType=VARCHAR},
+      last_update_date = current_timestamp
+    where
+        rfid IN
+      <foreach close=")" collection="rfidList" index="index" item="item" open="(" separator=",">
+        #{item}
+      </foreach>
+  </update>
+    <update id="updateLockStatusByCompanyId">
+      update
+            sfseal_company.lock
+      set
+            status_code = #{statusCode,jdbcType=BIGINT},
+            last_update_user = #{updateUser,jdbcType=VARCHAR},
+            last_update_date = current_timestamp
+      where
+            rfid in (
+                select
+                    rfid
+                from
+                    sfseal_company.company_lock_xref
+                where
+                    company_id = #{companyId,jdbcType=BIGINT}
+                and
+                    dispense_record_id = #{dispenseRecordId,jdbcType=BIGINT}
+                and
+                    is_active = true
+      )
+    </update>
+    <delete id="deleteLocks">
+    delete from  sfseal_company.lock
+    where
+    rfid IN
+    <foreach close=")" collection="rfidList" index="index" item="item" open="(" separator=",">
+      #{item}
+    </foreach>
+  </delete>
+
+  <select id="getLocksByWorkOrderId" resultMap="BaseResultMap">
+    SELECT
+        lock.rfid,
+        lock.create_date,
+        lock.last_update_date,
+        lock.last_update_user,
+        lock.box_id,
+        lock.bar_code,
+        lock.status_code,
+        lock.lock_position
+    FROM
+        sfseal_company.lock lock
+    LEFT JOIN
+        sfseal_company.work_order_lock_xref wolx
+    ON
+        wolx.bar_code = lock.bar_code
+    WHERE
+        wolx.work_order_id = #{workOrderId,jdbcType=BIGINT}
+  </select>
+
+  <select id="getLocksForWorkOrder" resultMap="BaseResultMap">
+    SELECT
+      lock.rfid,
+      lock.create_date,
+      lock.last_update_date,
+      lock.last_update_user,
+      lock.box_id,
+      lock.bar_code,
+      lock.status_code,
+      lock.lock_position
+    FROM
+      sfseal_company.lock lock
+    LEFT JOIN
+      sfseal_company.company_lock_xref clx
+    ON
+        lock.rfid = clx.rfid and clx.is_active = true
+    LEFT JOIN
+      sfseal_company.company company
+    ON
+        company.company_id = clx.company_id
+    LEFT JOIN
+      sfseal_company.work_order_lock_xref wolx
+    ON
+        wolx.bar_code = lock.bar_code
+    WHERE
+        lock.status_code = 10003
+      AND
+        wolx.bar_code is null
+      AND
+        company.company_id = #{companyId,jdbcType=BIGINT}
+    <if test="barCode != null">
+      AND
+        lock.bar_code = #{barCode,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="getLocksByRfids" resultMap="BaseResultMap">
+    select
+        <include refid="Base_Column_List"/>
+    from
+        sfseal_company.lock
+    where
+        rfid in
+    <foreach collection="rfidList" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
+  <resultMap id="LockSealInfoMap" type="com.wanyun.sfseal.db.model.company.LockModel" extends="BaseResultMap">
+    <collection column="rfid" property="attachmentModelList" ofType="com.wanyun.sfseal.db.model.company.AttachmentModel"
+                select="com.wanyun.sfseal.db.mapper.company.AttachmentModelMapper.selectAttachmentsByRfid"/>
+  </resultMap>
+  <select id="getLockSealInfoByBarCode" resultMap="LockSealInfoMap">
+    select
+        lock.rfid,
+        lock.create_date,
+        lock.last_update_date,
+        lock.last_update_user,
+        lock.box_id,
+        lock.bar_code,
+        lock.status_code,
+        lock.lock_position,
+        lock.lock_user_id,
+        lock.unlock_user_id,
+        lock.tran_id,
+        lockAccount.username as lockUserName,
+        unlockAccount.username as unLockUserName ,
+        tran.transprort_id as transportName
+    from
+        sfseal_company.lock lock
+    left join
+        sfseal_user.account lockAccount
+    on
+        lockAccount.account_id = lock.lock_user_id
+    left join
+        sfseal_user.account unlockAccount
+    on
+        unlockAccount.account_id = lock.unlock_user_id
+    left join
+        sfseal_company.transport tran
+    on
+        lock.tran_id = tran.id
+    where
+        lock.bar_code = #{barcode,jdbcType=VARCHAR}
+  </select>
+</mapper>

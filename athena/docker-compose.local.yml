@@ -1,0 +1,49 @@
+version: '3'
+
+volumes:
+  database_data:
+    driver: local
+
+services:
+  database:
+    image: postgres
+    volumes:
+      - "./.local_database/data:/var/lib/postgresql/data"
+    environment:
+      - "POSTGRES_USER=sfseal"
+      - "POSTGRES_PASSWORD=sfseal"
+      - "POSTGRES_DB=sfseal"
+    networks:
+      api:
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    restart: unless-stopped
+
+  athena:
+    build:
+      context: ./
+      dockerfile: Dockerfile.local
+    image: com.wanyun.sfseal/athena:latest
+    container_name: athena
+    expose:
+      - 8080
+      - 5005
+    ports:
+      - 8080:8080
+      - 5005:5005
+    links:
+      - database
+    networks:
+      api:
+    environment:
+      - sfseal.datasource.jdbc-url=jdbc:postgresql://database:5432/sfseal
+      - sfseal.datasource.username=sfseal
+      - sfseal.datasource.password=sfseal
+      - CLOUD_ENVIRONMENT=local
+      - ADDRESS_ENVIRONMENT=local
+      - LOGGING_FILE=athena.log
+
+networks:
+  api:

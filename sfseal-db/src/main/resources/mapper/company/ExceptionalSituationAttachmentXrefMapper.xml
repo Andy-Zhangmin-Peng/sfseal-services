@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyun.sfseal.db.mapper.company.ExceptionalSituationAttachmentXrefMapper">
+  <resultMap id="BaseResultMap" type="com.wanyun.sfseal.db.model.company.ExceptionalSituationAttachmentXrefModel">
+    <!--@mbg.generated-->
+    <!--@Table sfseal_company.exceptional_situation_attachment_xref-->
+    <id column="xref_id" jdbcType="BIGINT" property="xrefId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="last_update_user" jdbcType="VARCHAR" property="lastUpdateUser" />
+    <result column="attachment_id" jdbcType="BIGINT" property="attachmentId" />
+    <result column="exception_situation_id" jdbcType="BIGINT" property="exceptionSituationId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    xref_id, create_date, last_update_date, last_update_user, attachment_id, exception_situation_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sfseal_company.exceptional_situation_attachment_xref
+    where xref_id = #{xrefId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sfseal_company.exceptional_situation_attachment_xref
+    where xref_id = #{xrefId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="xref_id" keyProperty="xrefId" parameterType="com.wanyun.sfseal.db.model.company.ExceptionalSituationAttachmentXrefModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.exceptional_situation_attachment_xref (create_date, last_update_date, last_update_user, 
+      attachment_id, exception_situation_id)
+    values (#{createDate,jdbcType=TIMESTAMP}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{lastUpdateUser,jdbcType=VARCHAR}, 
+      #{attachmentId,jdbcType=BIGINT}, #{exceptionSituationId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="xref_id" keyProperty="xrefId" parameterType="com.wanyun.sfseal.db.model.company.ExceptionalSituationAttachmentXrefModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.exceptional_situation_attachment_xref
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user,
+      </if>
+      <if test="attachmentId != null">
+        attachment_id,
+      </if>
+      <if test="exceptionSituationId != null">
+        exception_situation_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentId != null">
+        #{attachmentId,jdbcType=BIGINT},
+      </if>
+      <if test="exceptionSituationId != null">
+        #{exceptionSituationId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanyun.sfseal.db.model.company.ExceptionalSituationAttachmentXrefModel">
+    <!--@mbg.generated-->
+    update sfseal_company.exceptional_situation_attachment_xref
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentId != null">
+        attachment_id = #{attachmentId,jdbcType=BIGINT},
+      </if>
+      <if test="exceptionSituationId != null">
+        exception_situation_id = #{exceptionSituationId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where xref_id = #{xrefId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanyun.sfseal.db.model.company.ExceptionalSituationAttachmentXrefModel">
+    <!--@mbg.generated-->
+    update sfseal_company.exceptional_situation_attachment_xref
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      attachment_id = #{attachmentId,jdbcType=BIGINT},
+      exception_situation_id = #{exceptionSituationId,jdbcType=BIGINT}
+    where xref_id = #{xrefId,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sfseal_company.exceptional_situation_attachment_xref
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="create_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.createDate,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="last_update_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.lastUpdateDate,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="last_update_user = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.lastUpdateUser,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="attachment_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.attachmentId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="exception_situation_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.exceptionSituationId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+    </trim>
+    where xref_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.xrefId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sfseal_company.exceptional_situation_attachment_xref
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="create_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createDate != null">
+            when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.createDate,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="last_update_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lastUpdateDate != null">
+            when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.lastUpdateDate,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="last_update_user = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lastUpdateUser != null">
+            when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.lastUpdateUser,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="attachment_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.attachmentId != null">
+            when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.attachmentId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="exception_situation_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.exceptionSituationId != null">
+            when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.exceptionSituationId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where xref_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.xrefId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="xref_id" keyProperty="xrefId" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.exceptional_situation_attachment_xref
+    (create_date, last_update_date, last_update_user, attachment_id, exception_situation_id
+      )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.createDate,jdbcType=TIMESTAMP}, #{item.lastUpdateDate,jdbcType=TIMESTAMP}, 
+        #{item.lastUpdateUser,jdbcType=VARCHAR}, #{item.attachmentId,jdbcType=BIGINT}, 
+        #{item.exceptionSituationId,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+</mapper>

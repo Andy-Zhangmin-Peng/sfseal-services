@@ -1,0 +1,97 @@
+### Registry By wechat
+POST http://localhost:8080/noauth/wechat/user/check?code=001as6dL1f4hR81AR6dL1F2YcL1as6du
+Content-Type: application/json
+
+{
+  "name": "Gavin.Wu.吴小浩",
+  "gender": "男",
+  "avatarUrl": "https://wx.qlogo.cn/mmopen/vi_32/Q3auHgzwzM6RHlr7ZC1ZNMkHiaicexEksEqv5HAjJ1lc2GvibnwnFB7ONSQfN4rDq3O6Bl43OpD84dZRY82UwUEIA/132"
+}
+
+### Authorization by token, part 1. Retrieve and save token.
+POST http://localhost:8080/oauth/token?client_id=cloudroad_user&grant_type=password&username=cloudroadwechat;oLlwa49Vs4YCkuXK6AQXBQHGhiJc&password=oLlwa49Vs4YCkuXK6AQXBQHGhiJc&scope=trust&usage=end_user
+Content-Type: application/json
+
+> {%
+client.global.set("access_token", response.body.access_token);
+client.global.set("token_type", response.body.token_type);
+%}
+
+###
+
+### Send create request to create dummy amusement
+POST localhost:8080/together/amusement
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "amusementType": 1,
+  "startDt": {{$timestamp}},
+  "endDt": {{$timestamp}},
+  "title": "{{$uuid}}",
+  "instructions": "demoData",
+  "details": "demoData",
+  "participantLimit": {{$randomInt}},
+  "publishDate": {{$timestamp}},
+  "isActive": true,
+  "createDate": {{$timestamp}},
+  "lastUpdateDate": {{$timestamp}},
+  "lastUpdateUser": "demoData",
+  "summary": "{{$uuid}}",
+  "address": {
+    "name": "demoData",
+    "address": "demoData",
+    "city": "demoData",
+    "lngLat": {
+      "x": 1,
+      "y": 2
+    },
+    "createDate": {{$timestamp}},
+    "lastUpdateDate": {{$timestamp}},
+    "lastUpdateUser": "demoData"
+  },
+  "participants": [
+    {
+      "userId": 1,
+      "participantType": 1,
+      "isActive": true,
+      "lastUpdateDt": {{$timestamp}},
+      "lastUpdateUser": "demoData"
+    }
+  ]
+}
+
+###
+
+### Send create request to create dummy amusement
+POST localhost:8080/together/amusement/full?amusementJsonString={}
+Content-Type: undefined
+Authorization: {{token_type}} {{access_token}}
+
+###
+### Send search request to join the amusement
+
+POST localhost:8080/together/amusement/6/participant
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+###
+
+### Send search request to search amusement
+POST localhost:8080/together/amusement/search
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "pageNum": 2,
+  "pageSize": 2
+}
+
+###
+
+### Send to get dummy amusement
+GET localhost:8080/together/amusement/10
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+###

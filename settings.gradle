@@ -1,0 +1,6 @@
+rootProject.name = 'sfseal-services'
+include 'common'
+include 'athena'
+include 'sfseal-db'
+include 'user-mgmt'
+include 'company-mgmt'

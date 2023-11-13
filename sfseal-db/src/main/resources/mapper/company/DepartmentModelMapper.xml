@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyun.sfseal.db.mapper.company.DepartmentModelMapper">
+  <resultMap id="BaseResultMap" type="com.wanyun.sfseal.db.model.company.DepartmentModel">
+    <!--@mbg.generated-->
+    <!--@Table sfseal_company.department-->
+    <id column="department_id" jdbcType="BIGINT" property="departmentId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="last_update_user" jdbcType="VARCHAR" property="lastUpdateUser" />
+    <result column="department_name" jdbcType="VARCHAR" property="departmentName" />
+    <result column="department_phone_number" jdbcType="VARCHAR" property="departmentPhoneNumber" />
+    <result column="department_administrator" jdbcType="VARCHAR" property="departmentAdministrator" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    department_id, create_date, last_update_date, last_update_user, department_name, 
+    department_phone_number, department_administrator
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sfseal_company.department
+    where department_id = #{departmentId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sfseal_company.department
+    where department_id = #{departmentId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="department_id" keyProperty="departmentId" parameterType="com.wanyun.sfseal.db.model.company.DepartmentModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.department (create_date, last_update_date, last_update_user,
+      department_name, department_phone_number, 
+      department_administrator)
+    values (#{createDate,jdbcType=TIMESTAMP}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{lastUpdateUser,jdbcType=VARCHAR}, 
+      #{departmentName,jdbcType=VARCHAR}, #{departmentPhoneNumber,jdbcType=VARCHAR}, 
+      #{departmentAdministrator,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="department_id" keyProperty="departmentId" parameterType="com.wanyun.sfseal.db.model.company.DepartmentModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.department
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user,
+      </if>
+      <if test="departmentName != null">
+        department_name,
+      </if>
+      <if test="departmentPhoneNumber != null">
+        department_phone_number,
+      </if>
+      <if test="departmentAdministrator != null">
+        department_administrator,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null">
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentPhoneNumber != null">
+        #{departmentPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentAdministrator != null">
+        #{departmentAdministrator,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanyun.sfseal.db.model.company.DepartmentModel">
+    <!--@mbg.generated-->
+    update sfseal_company.department
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null">
+        department_name = #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentPhoneNumber != null">
+        department_phone_number = #{departmentPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentAdministrator != null">
+        department_administrator = #{departmentAdministrator,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where department_id = #{departmentId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanyun.sfseal.db.model.company.DepartmentModel">
+    <!--@mbg.generated-->
+    update sfseal_company.department
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      department_name = #{departmentName,jdbcType=VARCHAR},
+      department_phone_number = #{departmentPhoneNumber,jdbcType=VARCHAR},
+      department_administrator = #{departmentAdministrator,jdbcType=VARCHAR}
+    where department_id = #{departmentId,jdbcType=BIGINT}
+  </update>
+
+  <select id="getDepartmentsByCondition" resultMap="BaseResultMap">
+    select
+        dep.department_id,
+        dep.create_date,
+        dep.last_update_date,
+        dep.last_update_user,
+        dep.department_name,
+        dep.department_phone_number,
+        dep.department_administrator
+    from
+        sfseal_company.department dep
+    inner join
+        sfseal_company.company_department_xref xref
+    on
+        dep.department_id = xref.department_id
+    where
+        xref.company_id = #{companyId,jdbcType=BIGINT}
+    <if test="departmentName != null ">
+      AND
+      dep.department_name ILIKE concat('%',#{departmentName,jdbcType=VARCHAR},'%')
+    </if>
+  </select>
+
+  <select id="checkValueExisting" resultType="java.lang.Integer">
+    select
+        count (department.department_id)
+    from
+        sfseal_company.department department
+    left join
+        sfseal_company.company_department_xref cdx
+    on
+        cdx.department_id = department.department_id
+    where
+        cdx.company_id = #{companyId,jdbcType=BIGINT}
+      <if test="valueType == 'departmentName'">
+        AND
+        department_name = #{value,jdbcType=VARCHAR}
+      </if>
+      <if test="valueType == 'phoneNumber'">
+        AND
+        department_phone_number = #{value,jdbcType=VARCHAR}
+      </if>
+  </select>
+</mapper>

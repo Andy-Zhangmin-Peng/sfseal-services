@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyun.sfseal.db.mapper.user.StaffModelMapper">
+    <resultMap id="BaseResultMap" type="com.wanyun.sfseal.db.model.user.StaffModel">
+        <!--@mbg.generated-->
+        <!--@Table sfseal_user.staff-->
+        <id column="account_id" jdbcType="BIGINT" property="accountId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="office_phone_number" jdbcType="VARCHAR" property="officePhoneNumber"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="is_active" jdbcType="BOOLEAN" property="isActive"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate"/>
+        <result column="last_update_user" jdbcType="VARCHAR" property="lastUpdateUser"/>
+        <result column="company_name" jdbcType="VARCHAR" property="companyName"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        account_id, "name", mobile, office_phone_number, address, is_active, create_date,
+        last_update_date, last_update_user
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from sfseal_user.staff
+        where account_id = #{accountId,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from sfseal_user.staff
+        where account_id = #{accountId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.wanyun.sfseal.db.model.user.StaffModel" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into
+            sfseal_user.staff
+            (
+                account_id,
+                "name",
+                mobile,
+                office_phone_number,
+                address,
+                is_active,
+                create_date,
+                last_update_date,
+                last_update_user
+            )
+        values
+            (
+                #{accountId,jdbcType=BIGINT},
+                #{name,jdbcType=VARCHAR},
+                #{mobile,jdbcType=VARCHAR},
+                #{officePhoneNumber,jdbcType=VARCHAR},
+                #{address,jdbcType=VARCHAR},
+                #{isActive,jdbcType=BOOLEAN},
+                #{createDate,jdbcType=TIMESTAMP},
+                #{lastUpdateDate,jdbcType=TIMESTAMP},
+                #{lastUpdateUser,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" keyColumn="account_id" keyProperty="accountId"
+            parameterType="com.wanyun.sfseal.db.model.user.StaffModel" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sfseal_user.staff
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                "name",
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="officePhoneNumber != null">
+                office_phone_number,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="isActive != null">
+                is_active,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="lastUpdateDate != null">
+                last_update_date,
+            </if>
+            <if test="lastUpdateUser != null">
+                last_update_user,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="officePhoneNumber != null">
+                #{officePhoneNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="isActive != null">
+                #{isActive,jdbcType=BOOLEAN},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateDate != null">
+                #{lastUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateUser != null">
+                #{lastUpdateUser,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.wanyun.sfseal.db.model.user.StaffModel">
+        <!--@mbg.generated-->
+        update sfseal_user.staff
+        <set>
+            <if test="name != null">
+                "name" = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="officePhoneNumber != null">
+                office_phone_number = #{officePhoneNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="isActive != null">
+                is_active = #{isActive,jdbcType=BOOLEAN},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateDate != null">
+                last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateUser != null">
+                last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where account_id = #{accountId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.wanyun.sfseal.db.model.user.StaffModel">
+        <!--@mbg.generated-->
+        update sfseal_user.staff
+        set "name" = #{name,jdbcType=VARCHAR},
+        mobile = #{mobile,jdbcType=VARCHAR},
+        office_phone_number = #{officePhoneNumber,jdbcType=VARCHAR},
+        address = #{address,jdbcType=VARCHAR},
+        is_active = #{isActive,jdbcType=BOOLEAN},
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+        last_update_user = #{lastUpdateUser,jdbcType=VARCHAR}
+        where account_id = #{accountId,jdbcType=BIGINT}
+    </update>
+
+    <resultMap id="FullStaffResultMap" type="com.wanyun.sfseal.db.model.user.StaffModel" extends="BaseResultMap">
+        <collection column="account_id" property="company"  ofType="com.wanyun.sfseal.db.model.company.CompanyModel" select="com.wanyun.sfseal.db.mapper.company.CompanyModelMapper.selectCompanyByAccountId"/>
+    </resultMap>
+
+    <select id="selectStaffByAccountId" resultMap="FullStaffResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        sfseal_user.staff
+        where
+        account_id = #{accountId,jdbcType=BIGINT}
+        and
+        is_active = #{isActive,jdbcType=BIT}
+    </select>
+    <select id="getStaffsByCondition" resultMap="BaseResultMap">
+        SELECT
+            company.company_name ,
+            staff.account_id,
+            staff."name",
+            staff.mobile,
+            staff.office_phone_number,
+            staff.address,
+            staff.is_active,
+            staff.create_date,
+            staff.last_update_date,
+            staff.last_update_user
+        FROM
+            sfseal_user.staff staff
+        LEFT JOIN
+            sfseal_company.company_account_xref cax
+        ON
+            staff.account_id = cax.account_id
+        LEFT JOIN
+            sfseal_company.company company
+        ON
+            cax.company_id = company.company_id
+        WHERE
+            staff.is_active = true
+        <if test="name != null">
+            AND staff.name ILIKE concat('%',#{name},'%')
+        </if>
+        <if test="companyIdList.size() > 0">
+            AND
+            company.company_id IN
+            <foreach item="item" index="index" collection="companyIdList"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+</mapper>

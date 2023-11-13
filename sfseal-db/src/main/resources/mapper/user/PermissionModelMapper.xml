@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyun.sfseal.db.mapper.user.PermissionModelMapper">
+    <resultMap id="BaseResultMap" type="com.wanyun.sfseal.db.model.user.PermissionModel">
+        <!--@mbg.generated-->
+        <!--@Table sfseal_user.permission-->
+        <id column="permission_id" jdbcType="BIGINT" property="permissionId"/>
+        <result column="permission_name" jdbcType="VARCHAR" property="permissionName"/>
+        <result column="permission_display_name" jdbcType="VARCHAR" property="permissionDisplayName"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate"/>
+        <result column="last_update_user" jdbcType="VARCHAR" property="lastUpdateUser"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        permission_id, permission_name, permission_display_name, description, create_date,
+        last_update_date, last_update_user
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from sfseal_user.permission
+        where permission_id = #{permissionId,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from sfseal_user.permission
+        where permission_id = #{permissionId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="permission_id" keyProperty="permissionId"
+            parameterType="com.wanyun.sfseal.db.model.user.PermissionModel" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sfseal_user.permission (permission_name, permission_display_name,
+        description, create_date, last_update_date,
+        last_update_user)
+        values (#{permissionName,jdbcType=VARCHAR}, #{permissionDisplayName,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{lastUpdateDate,jdbcType=TIMESTAMP},
+        #{lastUpdateUser,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="permission_id" keyProperty="permissionId"
+            parameterType="com.wanyun.sfseal.db.model.user.PermissionModel" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sfseal_user.permission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="permissionName != null">
+                permission_name,
+            </if>
+            <if test="permissionDisplayName != null">
+                permission_display_name,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="lastUpdateDate != null">
+                last_update_date,
+            </if>
+            <if test="lastUpdateUser != null">
+                last_update_user,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="permissionName != null">
+                #{permissionName,jdbcType=VARCHAR},
+            </if>
+            <if test="permissionDisplayName != null">
+                #{permissionDisplayName,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateDate != null">
+                #{lastUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateUser != null">
+                #{lastUpdateUser,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.wanyun.sfseal.db.model.user.PermissionModel">
+        <!--@mbg.generated-->
+        update sfseal_user.permission
+        <set>
+            <if test="permissionName != null">
+                permission_name = #{permissionName,jdbcType=VARCHAR},
+            </if>
+            <if test="permissionDisplayName != null">
+                permission_display_name = #{permissionDisplayName,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateDate != null">
+                last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateUser != null">
+                last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where permission_id = #{permissionId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.wanyun.sfseal.db.model.user.PermissionModel">
+        <!--@mbg.generated-->
+        update sfseal_user.permission
+        set permission_name = #{permissionName,jdbcType=VARCHAR},
+        permission_display_name = #{permissionDisplayName,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+        last_update_user = #{lastUpdateUser,jdbcType=VARCHAR}
+        where permission_id = #{permissionId,jdbcType=BIGINT}
+    </update>
+
+    <select id="selectPermissionsByRoleId" resultMap="BaseResultMap">
+        select
+            permission.permission_id,
+            permission.permission_name,
+            permission.permission_display_name,
+            permission.description,
+            permission.create_date,
+            permission.last_update_date,
+            permission.last_update_user
+        from
+            sfseal_user.permission
+        inner join
+            sfseal_user.role_permission_xref xref
+        on
+            permission.permission_id = xref.permission_id
+        where
+            xref.role_id = #{roleId,jdbcType=BIGINT}
+    </select>
+</mapper>

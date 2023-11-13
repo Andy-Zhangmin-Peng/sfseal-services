@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <classPathEntry location="./postgresql-9.4.1211.jar"/>
+
+    <context id="ForSampleTables" targetRuntime="MyBatis3Simple">
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://localhost:5432/postgres"
+                        userId="postgres"
+                        password="password">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.wanyun.sfseal.db.model.user" targetProject="../src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper.user" targetProject="../src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.wanyun.sfseal.db.mapper.user" targetProject="../src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <table schema="qucamp_user" tableName="account" domainObjectName="AccountModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="account_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="staff" domainObjectName="StaffModel">
+            <property name="useActualColumnNames" value="false"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="user" domainObjectName="UserModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="user_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="birthday" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="user_address" domainObjectName="UserAddressModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="address_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="lng_lat" javaType="org.postgresql.geometric.PGpoint"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="permission" domainObjectName="PermissionModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="permission_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="role" domainObjectName="RoleModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="role_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="role_hierarchy_xref" domainObjectName="RoleHierarchyXrefModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="xref_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="role_permission_xref" domainObjectName="RolePermissionXrefModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="xref_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="account_role_xref" domainObjectName="AccountRoleXrefModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="xref_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="user_picture" domainObjectName="UserPictureModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="user_picture_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="feedback" domainObjectName="FeedbackModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="feedback_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="feedback_picture" domainObjectName="FeedbackPictureModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="feedback_picture_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="tag_dict" domainObjectName="TagDictModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="tag_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="tag_dict_account_xref" domainObjectName="TagDictAccountXrefModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="xref_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="exp_level" domainObjectName="ExpLevelModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="exp_level_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="equity" domainObjectName="EquityModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="equity_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="exp_level_equity_xref" domainObjectName="ExpLevelEquityXrefModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="xref_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="hobby" domainObjectName="HobbyModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="hobby_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="hobby_user_xref" domainObjectName="HobbyUserXrefModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="xref_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="captcha" domainObjectName="CaptchaModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="captcha_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="expired_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="staging_user" domainObjectName="StagingUserModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="staging_user_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+
+        <table schema="qucamp_user" tableName="user_profile_image_xref" domainObjectName="UserProfileImageXrefModel">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="xref_id" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="create_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+            <columnOverride column="last_update_date" jdbcType="TIMESTAMP" javaType="java.sql.Timestamp"/>
+        </table>
+    </context>
+</generatorConfiguration>

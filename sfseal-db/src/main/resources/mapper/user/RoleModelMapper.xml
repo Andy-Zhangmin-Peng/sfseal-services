@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyun.sfseal.db.mapper.user.RoleModelMapper">
+    <resultMap id="BaseResultMap" type="com.wanyun.sfseal.db.model.user.RoleModel">
+        <!--@mbg.generated-->
+        <!--@Table sfseal_user.role-->
+        <id column="role_id" jdbcType="BIGINT" property="roleId"/>
+        <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+        <result column="role_display_name" jdbcType="VARCHAR" property="roleDisplayName"/>
+        <result column="role_desc" jdbcType="VARCHAR" property="roleDesc"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate"/>
+        <result column="last_update_user" jdbcType="VARCHAR" property="lastUpdateUser"/>
+        <result column="usage" jdbcType="VARCHAR" property="usage"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        role_id, role_name, role_display_name, role_desc, create_date, last_update_date,
+        last_update_user, "usage"
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from sfseal_user.role
+        where role_id = #{roleId,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from sfseal_user.role
+        where role_id = #{roleId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="role_id" keyProperty="roleId"
+            parameterType="com.wanyun.sfseal.db.model.user.RoleModel" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sfseal_user.role (role_name, role_display_name, role_desc,
+        create_date, last_update_date, last_update_user,
+        "usage")
+        values (#{roleName,jdbcType=VARCHAR}, #{roleDisplayName,jdbcType=VARCHAR}, #{roleDesc,jdbcType=VARCHAR},
+        #{createDate,jdbcType=TIMESTAMP}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{lastUpdateUser,jdbcType=VARCHAR},
+        #{usage,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="role_id" keyProperty="roleId"
+            parameterType="com.wanyun.sfseal.db.model.user.RoleModel" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sfseal_user.role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleName != null">
+                role_name,
+            </if>
+            <if test="roleDisplayName != null">
+                role_display_name,
+            </if>
+            <if test="roleDesc != null">
+                role_desc,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="lastUpdateDate != null">
+                last_update_date,
+            </if>
+            <if test="lastUpdateUser != null">
+                last_update_user,
+            </if>
+            <if test="usage != null">
+                "usage",
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roleName != null">
+                #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleDisplayName != null">
+                #{roleDisplayName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleDesc != null">
+                #{roleDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateDate != null">
+                #{lastUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateUser != null">
+                #{lastUpdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="usage != null">
+                #{usage,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.wanyun.sfseal.db.model.user.RoleModel">
+        <!--@mbg.generated-->
+        update sfseal_user.role
+        <set>
+            <if test="roleName != null">
+                role_name = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleDisplayName != null">
+                role_display_name = #{roleDisplayName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleDesc != null">
+                role_desc = #{roleDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateDate != null">
+                last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateUser != null">
+                last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="usage != null">
+                "usage" = #{usage,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where role_id = #{roleId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.wanyun.sfseal.db.model.user.RoleModel">
+        <!--@mbg.generated-->
+        update sfseal_user.role
+        set role_name = #{roleName,jdbcType=VARCHAR},
+        role_display_name = #{roleDisplayName,jdbcType=VARCHAR},
+        role_desc = #{roleDesc,jdbcType=VARCHAR},
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+        last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+        "usage" = #{usage,jdbcType=VARCHAR}
+        where role_id = #{roleId,jdbcType=BIGINT}
+    </update>
+
+
+    <!-- =======================separator========================= -->
+    <!-- This is customized map NOT generated by MyBatis Generator -->
+    <resultMap id="FullRoleResultMap" type="com.wanyun.sfseal.db.model.user.RoleModel" extends="BaseResultMap">
+        <collection property="permissions" column="role_id" ofType="com.wanyun.sfseal.db.model.user.PermissionModel"
+                    select="com.wanyun.sfseal.db.mapper.user.PermissionModelMapper.selectPermissionsByRoleId"/>
+    </resultMap>
+
+    <select id="selectRolesByAccountId" resultMap="FullRoleResultMap">
+        select
+            role.role_id,
+            role.role_name,
+            role.role_display_name,
+            role.role_desc,
+            role.create_date,
+            role.last_update_date,
+            role.last_update_user,
+            role."usage"
+        from
+            sfseal_user.role
+        left join
+            sfseal_user.account_role_xref account_xref
+        on
+            role.role_id = account_xref.role_id
+        where
+            account_xref.account_id = #{accountId,jdbcType=BIGINT}
+    </select>
+</mapper>

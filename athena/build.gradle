@@ -1,0 +1,27 @@
+apply plugin: 'com.palantir.docker'
+
+bootJar {
+    archiveBaseName = "athena"
+    archiveVersion = "0.1.0"
+}
+
+task unpack(type: Copy) {
+    dependsOn bootJar
+    from(zipTree(tasks.bootJar.outputs.files.singleFile))
+    into("build/dependency")
+}
+
+docker {
+    name "${project.group}/${bootJar.archiveBaseName.get()}:latest"
+    copySpec.from(tasks.unpack.outputs).into("dependency")
+    buildArgs(['DEPENDENCY': "dependency"])
+}
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.2.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '2.2.2.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '2.2.2.RELEASE'
+
+    compile project(":user-mgmt")
+    compile project(":company-mgmt")
+}

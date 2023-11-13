@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyun.sfseal.db.mapper.company.ExceptionalSituationModelMapper">
+  <resultMap id="BaseResultMap" type="com.wanyun.sfseal.db.model.company.ExceptionalSituationModel">
+    <!--@mbg.generated-->
+    <!--@Table sfseal_company.exceptional_situation-->
+    <id column="exception_id" jdbcType="BIGINT" property="exceptionId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="last_update_user" jdbcType="VARCHAR" property="lastUpdateUser" />
+    <result column="exception_level" jdbcType="BIGINT" property="exceptionLevel" />
+    <result column="exception_type_code" jdbcType="BIGINT" property="exceptionTypeCode" />
+    <result column="exception_message" jdbcType="VARCHAR" property="exceptionMessage" />
+    <result column="report_address_id" jdbcType="BIGINT" property="reportAddressId" />
+    <result column="report_user_id" jdbcType="BIGINT" property="reportUserId" />
+    <result column="bar_code" jdbcType="VARCHAR" property="barCode" />
+    <result column="work_order_id" jdbcType="BIGINT" property="workOrderId" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="tran_id" jdbcType="VARCHAR" property="tranId" />
+    <result column="display_key" jdbcType="VARCHAR" property="exceptionTypeName" />
+    <result column="address_detail" jdbcType="VARCHAR" property="addressDetail"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    exception_id, create_date, last_update_date, last_update_user, exception_level, exception_type_code,
+    exception_message, report_address_id, report_user_id, bar_code, work_order_id, company_id,
+    tran_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from sfseal_company.exceptional_situation
+    where exception_id = #{exceptionId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sfseal_company.exceptional_situation
+    where exception_id = #{exceptionId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="exception_id" keyProperty="exceptionId" parameterType="com.wanyun.sfseal.db.model.company.ExceptionalSituationModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.exceptional_situation (create_date, last_update_date, last_update_user,
+      exception_level, exception_type_code, exception_message,
+      report_address_id, report_user_id, bar_code,
+      work_order_id, company_id, tran_id
+      )
+    values (#{createDate,jdbcType=TIMESTAMP}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{lastUpdateUser,jdbcType=VARCHAR},
+      #{exceptionLevel,jdbcType=BIGINT}, #{exceptionTypeCode,jdbcType=BIGINT}, #{exceptionMessage,jdbcType=VARCHAR},
+      #{reportAddressId,jdbcType=BIGINT}, #{reportUserId,jdbcType=BIGINT}, #{barCode,jdbcType=VARCHAR},
+      #{workOrderId,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT}, #{tranId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="exception_id" keyProperty="exceptionId" parameterType="com.wanyun.sfseal.db.model.company.ExceptionalSituationModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.exceptional_situation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user,
+      </if>
+      <if test="exceptionLevel != null">
+        exception_level,
+      </if>
+      <if test="exceptionTypeCode != null">
+        exception_type_code,
+      </if>
+      <if test="exceptionMessage != null">
+        exception_message,
+      </if>
+      <if test="reportAddressId != null">
+        report_address_id,
+      </if>
+      <if test="reportUserId != null">
+        report_user_id,
+      </if>
+      <if test="barCode != null">
+        bar_code,
+      </if>
+      <if test="workOrderId != null">
+        work_order_id,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="tranId != null">
+        tran_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionLevel != null">
+        #{exceptionLevel,jdbcType=BIGINT},
+      </if>
+      <if test="exceptionTypeCode != null">
+        #{exceptionTypeCode,jdbcType=BIGINT},
+      </if>
+      <if test="exceptionMessage != null">
+        #{exceptionMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="reportAddressId != null">
+        #{reportAddressId,jdbcType=BIGINT},
+      </if>
+      <if test="reportUserId != null">
+        #{reportUserId,jdbcType=BIGINT},
+      </if>
+      <if test="barCode != null">
+        #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="workOrderId != null">
+        #{workOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="tranId != null">
+        #{tranId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanyun.sfseal.db.model.company.ExceptionalSituationModel">
+    <!--@mbg.generated-->
+    update sfseal_company.exceptional_situation
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionLevel != null">
+        exception_level = #{exceptionLevel,jdbcType=BIGINT},
+      </if>
+      <if test="exceptionTypeCode != null">
+        exception_type_code = #{exceptionTypeCode,jdbcType=BIGINT},
+      </if>
+      <if test="exceptionMessage != null">
+        exception_message = #{exceptionMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="reportAddressId != null">
+        report_address_id = #{reportAddressId,jdbcType=BIGINT},
+      </if>
+      <if test="reportUserId != null">
+        report_user_id = #{reportUserId,jdbcType=BIGINT},
+      </if>
+      <if test="barCode != null">
+        bar_code = #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="workOrderId != null">
+        work_order_id = #{workOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="tranId != null">
+        tran_id = #{tranId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where exception_id = #{exceptionId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanyun.sfseal.db.model.company.ExceptionalSituationModel">
+    <!--@mbg.generated-->
+    update sfseal_company.exceptional_situation
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      exception_level = #{exceptionLevel,jdbcType=BIGINT},
+      exception_type_code = #{exceptionTypeCode,jdbcType=BIGINT},
+      exception_message = #{exceptionMessage,jdbcType=VARCHAR},
+      report_address_id = #{reportAddressId,jdbcType=BIGINT},
+      report_user_id = #{reportUserId,jdbcType=BIGINT},
+      bar_code = #{barCode,jdbcType=VARCHAR},
+      work_order_id = #{workOrderId,jdbcType=BIGINT},
+      company_id = #{companyId,jdbcType=BIGINT},
+      tran_id = #{tranId,jdbcType=VARCHAR}
+    where exception_id = #{exceptionId,jdbcType=BIGINT}
+  </update>
+
+  <resultMap id="FullExceptionModel" type="com.wanyun.sfseal.db.model.company.ExceptionalSituationModel" extends="BaseResultMap">
+    <collection column="exception_id" property="attachmentList" ofType="com.wanyun.sfseal.db.model.company.AttachmentModel" select="com.wanyun.sfseal.db.mapper.company.AttachmentModelMapper.selectAttachmentsByExceptionId"/>
+  </resultMap>
+  <select id="getExceptionalSituationByCondition" resultMap="FullExceptionModel">
+    SELECT
+      es.exception_id,
+      es.create_date,
+      es.last_update_date,
+      es.last_update_user,
+      es.exception_level,
+      es.exception_type_code,
+      es.exception_message,
+      es.report_address_id,
+      es.report_user_id,
+      es.bar_code,
+      es.work_order_id,
+      es.company_id,
+      es.tran_id,
+      address.address_detail,
+      reference.display_key
+    FROM
+      sfseal_company.exceptional_situation es
+    LEFT JOIN
+      sfseal_reference.reference_data reference
+    ON
+      es.exception_type_code = reference.id
+    LEFT JOIN
+        sfseal_company.work_order_address address
+    ON
+        address.address_id = es.report_address_id
+    WHERE
+      es.company_id = #{companyId,jdbcType=BIGINT}
+    <if test="reportStartTime != null">
+      AND
+      es.create_date <![CDATA[  >=  ]]> #{reportStartTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="reportEndTime != null">
+      AND
+      es.create_date <![CDATA[ <= ]]> #{reportEndTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="barCode != null">
+      AND
+      es.bar_code = #{barCode,jdbcType=VARCHAR}
+    </if>
+    <if test="typeList != null and typeList.size() != 0">
+      AND
+      reference.id IN
+      <foreach collection="typeList" index="index" item="item" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+  </select>
+</mapper>

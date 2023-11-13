@@ -1,0 +1,44 @@
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: classpath:prod-https.jks
+    key-alias: tomcat
+    key-store-password: qucamp
+    key-store-type: JKS
+
+qucamp:
+  datasource:
+    jdbc-url: jdbc:postgresql://192.168.32.9:5432/QucampDB
+    username: siteoneprod
+    password: 29r74L98L3h2g96W
+    maximum-pool-size: 30
+    driver-class-name: org.postgresql.Driver
+  user:
+    user-picture-size-max: 10485760
+    user-picture-size-baseline: 204800
+  reference:
+    cache-refresh-rate: 0 0/5 * * * ?
+
+oauth2:
+  clientID: wanyun_user
+  authorizedGrantTypes:
+    - password
+    - wechat_id
+  scopes: trust
+  keystorePath: classpath:prod.jks
+  keystorePassword: qucamp
+  keyPairAlias: prod
+  keyPairPassword: qucamp
+  accessTokenValidity: 10800
+
+wechat:
+  appId: <wechat-appId>
+  appSecret: <wechat-appSecret>
+  newActivityTemplateId: <wechat-newActivityTemplateId>
+
+alisms:
+  access-key-id: LTAIB8Awc1gNYAzb
+  access-key-secret: pcRvcT4vRv7H4x4837bIDKksV9pG8r
+  sign-name: 趣营
+  verification-code-template-code: SMS_183155104

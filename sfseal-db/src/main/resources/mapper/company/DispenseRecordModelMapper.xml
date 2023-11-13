@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyun.sfseal.db.mapper.company.DispenseRecordModelMapper">
+  <resultMap id="BaseResultMap" type="com.wanyun.sfseal.db.model.company.DispenseRecordModel">
+    <!--@mbg.generated-->
+    <!--@Table sfseal_company.dispense_record-->
+    <id column="dispense_record_id" jdbcType="BIGINT" property="dispenseRecordId" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="dispense_count" jdbcType="BIGINT" property="dispenseCount" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName"/>
+    <result column="is_active" jdbcType="BOOLEAN" property="isActive"/>
+    <result column="accpeted" jdbcType="BOOLEAN" property="accpeted"/>
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="last_update_user" jdbcType="VARCHAR" property="lastUpdateUser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    dispense_record_id, company_id, dispense_count,is_active,accpeted, create_date, last_update_date, last_update_user
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sfseal_company.dispense_record
+    where dispense_record_id = #{dispenseRecordId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sfseal_company.dispense_record
+    where dispense_record_id = #{dispenseRecordId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="dispense_record_id" keyProperty="dispenseRecordId" parameterType="com.wanyun.sfseal.db.model.company.DispenseRecordModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.dispense_record (company_id, dispense_count, is_active,accpeted, create_date,
+      last_update_date, last_update_user)
+    values (#{companyId,jdbcType=BIGINT}, #{dispenseCount,jdbcType=BIGINT},#{isActive,jdbcType=BOOLEAN},#{accpeted,jdbcType=BOOLEAN}, #{createDate,jdbcType=TIMESTAMP},
+      #{lastUpdateDate,jdbcType=TIMESTAMP}, #{lastUpdateUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="dispense_record_id" keyProperty="dispenseRecordId" parameterType="com.wanyun.sfseal.db.model.company.DispenseRecordModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.dispense_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="dispenseCount != null">
+        dispense_count,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+      <if test="accpeted != null">
+        accpeted,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="companyId != null">
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="dispenseCount != null">
+        #{dispenseCount,jdbcType=BIGINT},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=BOOLEAN},
+      </if>
+      <if test="accpeted != null">
+        #{accpeted,jdbcType=BOOLEAN},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanyun.sfseal.db.model.company.DispenseRecordModel">
+    <!--@mbg.generated-->
+    update sfseal_company.dispense_record
+    <set>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="dispenseCount != null">
+        dispense_count = #{dispenseCount,jdbcType=BIGINT},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=BOOLEAN},
+      </if>
+      <if test="accpeted != null">
+        accpeted = #{accpeted,jdbcType=BOOLEAN},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dispense_record_id = #{dispenseRecordId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanyun.sfseal.db.model.company.DispenseRecordModel">
+    <!--@mbg.generated-->
+    update sfseal_company.dispense_record
+    set company_id = #{companyId,jdbcType=BIGINT},
+      dispense_count = #{dispenseCount,jdbcType=BIGINT},
+      is_active = #{isActive,jdbcType=BOOLEAN},
+      accpeted = #{accpeted,jdbcType=BOOLEAN},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      last_update_user = #{lastUpdateUser,jdbcType=VARCHAR}
+    where dispense_record_id = #{dispenseRecordId,jdbcType=BIGINT}
+  </update>
+
+  <select id="getDispenseRecordsByCondition" resultMap="BaseResultMap">
+    select
+      record.dispense_record_id,
+      record.company_id,
+      record.dispense_count,
+      record.is_active,
+      record.accpeted,
+      record.create_date,
+      record.last_update_date,
+      record.last_update_user,
+      company.company_name
+    from
+        sfseal_company.dispense_record record
+    left join
+        sfseal_company.company company
+    ON
+        record.company_id = company.company_id
+    <where>
+      <if test="companyName != null">
+        AND
+        company.company_name ILIKE concat('%',#{companyName},'%')
+      </if>
+      <if test="companyId != null">
+        AND
+        record.company_id = #{companyId,jdbcType=BIGINT}
+      </if>
+      <if test="accpeted != null">
+        AND
+        record.accpeted = #{accpeted,jdbcType=BOOLEAN}
+      </if>
+      <if test="isActive != null">
+        AND
+        record.is_active = #{isActive,jdbcType=BOOLEAN}
+      </if>
+    </where>
+    order by record.dispense_record_id desc
+  </select>
+</mapper>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyun.sfseal.db.mapper.company.AttachmentModelMapper">
+  <resultMap id="BaseResultMap" type="com.wanyun.sfseal.db.model.company.AttachmentModel">
+    <!--@mbg.generated-->
+    <!--@Table sfseal_company.attachment-->
+    <id column="attachment_id" jdbcType="BIGINT" property="attachmentId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="last_update_user" jdbcType="VARCHAR" property="lastUpdateUser" />
+    <result column="attachment_code" jdbcType="VARCHAR" property="attachmentCode" />
+    <result column="attachment_type" jdbcType="BIGINT" property="attachmentType" />
+    <result column="attachment_name" jdbcType="VARCHAR" property="attachmentName"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    attachment_id, create_date, last_update_date, last_update_user, attachment_code,
+    attachment_type,attachment_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from sfseal_company.attachment
+    where attachment_id = #{attachmentId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sfseal_company.attachment
+    where attachment_id = #{attachmentId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="attachment_id" keyProperty="attachmentId" parameterType="com.wanyun.sfseal.db.model.company.AttachmentModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.attachment (create_date, last_update_date, last_update_user,
+      attachment_code, attachment_type,attachment_name)
+    values (#{createDate,jdbcType=TIMESTAMP}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{lastUpdateUser,jdbcType=VARCHAR},
+      #{attachmentCode,jdbcType=VARCHAR}, #{attachmentType,jdbcType=BIGINT}, #{attachmentName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="attachment_id" keyProperty="attachmentId" parameterType="com.wanyun.sfseal.db.model.company.AttachmentModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.attachment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user,
+      </if>
+      <if test="attachmentCode != null">
+        attachment_code,
+      </if>
+      <if test="attachmentType != null">
+        attachment_type,
+      </if>
+      <if test="attachmentName != null != null">
+        attachment_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentCode != null">
+        #{attachmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentType != null">
+        #{attachmentType,jdbcType=BIGINT},
+      </if>
+      <if test="attachmentName != null">
+        #{attachmentName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanyun.sfseal.db.model.company.AttachmentModel">
+    <!--@mbg.generated-->
+    update sfseal_company.attachment
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentCode != null">
+        attachment_code = #{attachmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentType != null">
+        attachment_type = #{attachmentType,jdbcType=BIGINT},
+      </if>
+      <if test="attachmentName != null">
+        attachment_name = #{attachmentName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where attachment_id = #{attachmentId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanyun.sfseal.db.model.company.AttachmentModel">
+    <!--@mbg.generated-->
+    update sfseal_company.attachment
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      attachment_code = #{attachmentCode,jdbcType=VARCHAR},
+      attachment_type = #{attachmentType,jdbcType=BIGINT},
+      attachment_name = #{attachmentName,jdbcType=VARCHAR}
+    where attachment_id = #{attachmentId,jdbcType=BIGINT}
+  </update>
+  <select id="selectAttachmentsByRfid" resultMap="BaseResultMap">
+    select
+        attachment.attachment_id,
+        attachment.create_date,
+        attachment.last_update_date,
+        attachment.last_update_user,
+        attachment.attachment_code,
+        attachment.attachment_type,
+        attachment.attachment_name
+    from
+        sfseal_company.attachment attachment
+    left join
+        sfseal_company.lock_attachment_xref lax
+    on
+        lax.attachment_id = attachment.attachment_id
+    where
+        lax.rfid = #{rfid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAttachmentsByExceptionId" resultMap="BaseResultMap">
+    select
+      attachment.attachment_id,
+      attachment.create_date,
+      attachment.last_update_date,
+      attachment.last_update_user,
+      attachment.attachment_code,
+      attachment.attachment_type,
+      attachment.attachment_name
+    from
+      sfseal_company.attachment attachment
+    left join
+      sfseal_company.exceptional_situation_attachment_xref esax
+    on
+      esax.attachment_id = attachment.attachment_id
+    where
+      esax.exception_situation_id = #{exceptionId,jdbcType=BIGINT}
+    </select>
+</mapper>

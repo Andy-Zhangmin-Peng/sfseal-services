@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyun.sfseal.db.mapper.company.LockImportXrefModelMapper">
+  <resultMap id="BaseResultMap" type="com.wanyun.sfseal.db.model.company.LockImportXrefModel">
+    <!--@mbg.generated-->
+    <!--@Table sfseal_company.lock_import_xref-->
+    <id column="xref_id" jdbcType="BIGINT" property="xrefId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="last_update_user" jdbcType="VARCHAR" property="lastUpdateUser" />
+    <result column="rfid" jdbcType="VARCHAR" property="rfid" />
+    <result column="import_id" jdbcType="BIGINT" property="importId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    xref_id, create_date, last_update_date, last_update_user, rfid, import_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sfseal_company.lock_import_xref
+    where xref_id = #{xrefId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sfseal_company.lock_import_xref
+    where xref_id = #{xrefId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="xref_id" keyProperty="xrefId" parameterType="com.wanyun.sfseal.db.model.company.LockImportXrefModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.lock_import_xref (create_date, last_update_date, last_update_user, 
+      rfid, import_id)
+    values (#{createDate,jdbcType=TIMESTAMP}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{lastUpdateUser,jdbcType=VARCHAR}, 
+      #{rfid,jdbcType=VARCHAR}, #{importId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="xref_id" keyProperty="xrefId" parameterType="com.wanyun.sfseal.db.model.company.LockImportXrefModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.lock_import_xref
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user,
+      </if>
+      <if test="rfid != null">
+        rfid,
+      </if>
+      <if test="importId != null">
+        import_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="rfid != null">
+        #{rfid,jdbcType=VARCHAR},
+      </if>
+      <if test="importId != null">
+        #{importId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanyun.sfseal.db.model.company.LockImportXrefModel">
+    <!--@mbg.generated-->
+    update sfseal_company.lock_import_xref
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="rfid != null">
+        rfid = #{rfid,jdbcType=VARCHAR},
+      </if>
+      <if test="importId != null">
+        import_id = #{importId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where xref_id = #{xrefId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanyun.sfseal.db.model.company.LockImportXrefModel">
+    <!--@mbg.generated-->
+    update sfseal_company.lock_import_xref
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      rfid = #{rfid,jdbcType=VARCHAR},
+      import_id = #{importId,jdbcType=BIGINT}
+    where xref_id = #{xrefId,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sfseal_company.lock_import_xref
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="create_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.createDate,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="last_update_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.lastUpdateDate,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="last_update_user = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.lastUpdateUser,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="rfid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.rfid,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="import_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.importId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+    </trim>
+    where xref_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.xrefId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="xref_id" keyProperty="xrefId" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.lock_import_xref
+    (create_date, last_update_date, last_update_user, rfid, import_id)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.createDate,jdbcType=TIMESTAMP}, #{item.lastUpdateDate,jdbcType=TIMESTAMP}, 
+        #{item.lastUpdateUser,jdbcType=VARCHAR}, #{item.rfid,jdbcType=VARCHAR}, #{item.importId,jdbcType=BIGINT}
+        )
+    </foreach>
+  </insert>
+
+  <select id="getRfidsByImportId" resultType="java.lang.String">
+    SELECT rfid
+    FROM sfseal_company.lock_import_xref
+    WHERE import_id = #{importId,jdbcType=BIGINT}
+  </select>
+</mapper>

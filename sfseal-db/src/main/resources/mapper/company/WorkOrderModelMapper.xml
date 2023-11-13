@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyun.sfseal.db.mapper.company.WorkOrderModelMapper">
+  <resultMap id="BaseResultMap" type="com.wanyun.sfseal.db.model.company.WorkOrderModel">
+    <!--@mbg.generated-->
+    <!--@Table sfseal_company.work_order-->
+    <id column="work_order_id" jdbcType="BIGINT" property="workOrderId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="last_update_user" jdbcType="VARCHAR" property="lastUpdateUser" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="status_code" jdbcType="BIGINT" property="statusCode" />
+    <result column="owner" jdbcType="VARCHAR" property="owner" />
+    <result column="carriera" jdbcType="VARCHAR" property="carriera" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="product_detail" jdbcType="VARCHAR" property="productDetail" />
+    <result column="attachment_id" jdbcType="BIGINT" property="attachmentId" />
+    <result column="display_key" jdbcType="VARCHAR" property="statusName" />
+    <result column="temp_carriera" jdbcType="VARCHAR" property="tempCarriera"/>
+    <result column="waybill_number" jdbcType="VARCHAR" property="wayBillNumber"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    work_order_id, create_date, last_update_date, last_update_user, company_id, status_code,
+    "owner", carriera,waybill_number,temp_carriera,start_time, end_time, product_detail, attachment_id,temp_carriera
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from sfseal_company.work_order
+    where work_order_id = #{workOrderId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sfseal_company.work_order
+    where work_order_id = #{workOrderId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="work_order_id" keyProperty="workOrderId" parameterType="com.wanyun.sfseal.db.model.company.WorkOrderModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.work_order (create_date, last_update_date, last_update_user,
+      company_id, status_code, "owner", carriera,
+      start_time, end_time, product_detail,
+      attachment_id,temp_carriera,waybill_number)
+    values (#{createDate,jdbcType=TIMESTAMP}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{lastUpdateUser,jdbcType=VARCHAR},
+      #{companyId,jdbcType=BIGINT}, #{statusCode,jdbcType=BIGINT}, #{owner,jdbcType=VARCHAR}, #{carriera,jdbcType=VARCHAR},
+    #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{productDetail,jdbcType=VARCHAR},
+      #{attachmentId,jdbcType=BIGINT},#{tempCarriera,jdbcType=VARCHAR},#{wayBillNumber,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="work_order_id" keyProperty="workOrderId" parameterType="com.wanyun.sfseal.db.model.company.WorkOrderModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.work_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="statusCode != null">
+        status_code,
+      </if>
+      <if test="owner != null">
+        "owner",
+      </if>
+      <if test="carriera != null">
+        "carriera",
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="productDetail != null">
+        product_detail,
+      </if>
+      <if test="attachmentId != null">
+        attachment_id,
+      </if>
+      <if test="tempCarriera != null">
+        temp_carriera,
+      </if>
+      <if test="wayBillNumber != null">
+        waybill_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="statusCode != null">
+        #{statusCode,jdbcType=BIGINT},
+      </if>
+      <if test="owner != null">
+        #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="carriera != null">
+        #{carriera,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productDetail != null">
+        #{productDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentId != null">
+        #{attachmentId,jdbcType=BIGINT},
+      </if>
+      <if test="tempCarriera != null">
+        #{tempCarriera,jdbcType=VARCHAR},
+      </if>
+      <if test="wayBillNumber != null">
+        #{wayBillNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanyun.sfseal.db.model.company.WorkOrderModel">
+    <!--@mbg.generated-->
+    update sfseal_company.work_order
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="statusCode != null">
+        status_code = #{statusCode,jdbcType=BIGINT},
+      </if>
+      <if test="owner != null">
+        "owner" = #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="carriera != null">
+        "carriera" = #{carriera,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productDetail != null">
+        product_detail = #{productDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentId != null">
+        attachment_id =  #{attachmentId,jdbcType=BIGINT},
+      </if>
+      <if test="tempCarriera != null">
+        temp_carriera = #{tempCarriera,jdbcType=VARCHAR},
+      </if>
+      <if test="wayBillNumber != null">
+        waybill_number = #{wayBillNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where work_order_id = #{workOrderId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanyun.sfseal.db.model.company.WorkOrderModel">
+    <!--@mbg.generated-->
+    update sfseal_company.work_order
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=BIGINT},
+      status_code = #{statusCode,jdbcType=BIGINT},
+      "owner" = #{owner,jdbcType=VARCHAR},
+      carriera = #{carriera,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      product_detail = #{productDetail,jdbcType=VARCHAR},
+      attachment_id = #{attachmentId,jdbcType=BIGINT},
+      temp_carriera = #{tempCarriera,jdbcType=VARCHAR},
+      waybill_number = #{wayBillNumber,jdbcType=VARCHAR}
+    where work_order_id = #{workOrderId,jdbcType=BIGINT}
+  </update>
+<!--  The following is not generated by mybatis-->
+  <resultMap id="FullResultMap" type="com.wanyun.sfseal.db.model.company.WorkOrderModel" extends="BaseResultMap">
+    <collection property="addressList" ofType="com.wanyun.sfseal.db.model.company.WorkOrderAddressModel"
+                column="work_order_id" select="com.wanyun.sfseal.db.mapper.company.WorkOrderAddressModelMapper.selectWorkOrderAddressByOrderId"/>
+    <collection property="transportList" ofType="com.wanyun.sfseal.db.model.company.TransportModel"
+                column="work_order_id" select="com.wanyun.sfseal.db.mapper.company.TransportModelMapper.selectTransportsByWorkOrderId"/>
+    <collection property="lockList" ofType="com.wanyun.sfseal.db.model.company.LockModel"
+                column="work_order_id" select="com.wanyun.sfseal.db.mapper.company.LockModelMapper.getLocksByWorkOrderId"/>
+    <collection property="attachment" ofType="com.wanyun.sfseal.db.model.company.AttachmentModel"
+                column="attachment_id" select="com.wanyun.sfseal.db.mapper.company.AttachmentModelMapper.selectByPrimaryKey"/>
+  </resultMap>
+  <select id="getWorkOrdersByCondition" resultMap="FullResultMap">
+    SELECT
+      distinct (workorder.work_order_id),
+      workorder.create_date,
+      workorder.last_update_date,
+      workorder.last_update_user,
+      workorder.company_id,
+      workorder.status_code,
+      workorder."owner",
+      workorder."carriera",
+      workorder.start_time,
+      workorder.end_time,
+      workorder.product_detail,
+      workorder.attachment_id,
+      workorder.temp_carriera,
+      workorder.waybill_number,
+      reference.display_key
+    FROM
+        sfseal_company.work_order workorder
+    LEFT JOIN
+        sfseal_reference.reference_data reference
+    ON
+        reference.id = workorder.status_code
+    LEFT JOIN
+        sfseal_company.work_order_address startAddress
+    ON
+        startAddress.work_order_id = workorder.work_order_id
+    LEFT JOIN
+        sfseal_company.work_order_address endAddress
+    ON
+        endAddress.work_order_id = workorder.work_order_id
+    WHERE
+        workorder.company_id = #{companyId,jdbcType=BIGINT}
+    <if test="owner != null">
+      AND
+      workorder."owner" ILIKE concat('%',#{owner,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="carriera != null">
+      AND
+      workorder."carriera" ILIKE concat('%',#{carriera,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="startTime != null">
+      AND
+      workorder.start_time &gt; #{startTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="endTime != null ">
+      AND
+      workorder.end_time &lt;  #{endTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="startAddress != null">
+      AND
+        startAddress.address_detail ILIKE concat('%',#{startAddress,jdbcType=VARCHAR},'%')
+      AND
+        startAddress.address_type = 30001
+    </if>
+    <if test="endAddress != null">
+      AND
+        endAddress.address_detail ILIKE concat('%',#{endAddress,jdbcType=VARCHAR},'%')
+      AND
+        endAddress.address_type = 30002
+    </if>
+    <if test="workOrderStatusIdList.size() > 0">
+      AND
+      workorder.status_code in
+      <foreach item="item" index="index" collection="workOrderStatusIdList"
+               open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+  </select>
+
+  <delete id="deleteByWorkOrderId">
+    delete from sfseal_company.work_order
+    where work_order_id  in
+    <foreach collection="workOrderIdList" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
+  <select id="selectWorkOrderByRFID" resultMap="FullResultMap">
+    SELECT
+      workorder.work_order_id,
+      workorder.create_date,
+      workorder.last_update_date,
+      workorder.last_update_user,
+      workorder.company_id,
+      workorder.status_code,
+      workorder."owner",
+      workorder."carriera",
+      workorder.start_time,
+      workorder.end_time,
+      workorder.product_detail,
+      workorder.waybill_number,
+      workorder.temp_carriera,
+      workorder.attachment_id
+    FROM
+      sfseal_company.work_order workorder
+    LEFT JOIN
+        sfseal_company.work_order_lock_xref wolx
+    ON
+        workorder.work_order_id = wolx.work_order_id
+    LEFT JOIN
+        sfseal_company.lock lock
+    ON
+        lock.bar_code = wolx.bar_code
+    WHERE
+        lock.rfid = #{rfid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getWorkOrderByWayBillNumber" resultType="com.wanyun.sfseal.db.model.company.WorkOrderModel">
+    SELECT
+        <include refid="Base_Column_List"/>
+    FROM
+        sfseal_company.work_order
+    WHERE
+        waybill_number = #{wayBillNumber,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

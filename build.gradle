@@ -1,0 +1,79 @@
+buildscript {
+    ext {
+        springBootVersion = '2.2.2.RELEASE'
+    }
+    repositories {
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "com.palantir.gradle.docker:gradle-docker:0.24.0"
+    }
+}
+
+// 所有模块/项目的通用配置
+allprojects {
+    group 'com.wanyun'
+    version '1.0.0'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'pmd'
+
+    pmd.ignoreFailures(true)
+}
+
+// 子模块/项目的统一配置
+subprojects {
+    apply plugin: 'java'
+    // 指定JDK版本
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    // 指定编码格式
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    }
+    ext {
+        //依赖版本
+        springBootVersion = "2.2.2.RELEASE"
+        postgresqlDriverVersion = "42.2.8"
+        mybatisStarterVersion = "2.1.1"
+        fastjsonVersion = "1.2.62"
+        lombokVersion = "1.18.10"
+        thumbnailatorVersion = "0.4.9"
+    }
+    dependencies {
+
+        compile("javax.servlet:javax.servlet-api:4.0.1")
+
+        // For Lombok
+        annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+        compileOnly "org.projectlombok:lombok:$lombokVersion"
+        testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
+        testCompileOnly "org.projectlombok:lombok:$lombokVersion"
+
+        // Log4j2
+        compile("org.springframework.boot:spring-boot-starter-log4j2:$springBootVersion")
+        // JDBC Driver
+        compile("org.postgresql:postgresql:$postgresqlDriverVersion")
+        // JSON
+        compile("com.alibaba:fastjson:$fastjsonVersion")
+        // Apache Commons
+        compile("org.apache.commons:commons-lang3:3.8.1")
+
+        // thumbnailator图像处理类库
+        compile "net.coobird:thumbnailator:$thumbnailatorVersion"
+
+        // Junit
+        testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+        testCompile("junit:junit:4.12")
+    }
+    configurations {
+        //移除spring boot 默认logger依赖
+        all*.exclude module: 'spring-boot-starter-logging'
+    }
+}

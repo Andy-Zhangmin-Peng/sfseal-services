@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyun.sfseal.db.mapper.company.ImportRecordModelMapper">
+  <resultMap id="BaseResultMap" type="com.wanyun.sfseal.db.model.company.ImportRecordModel">
+    <!--@mbg.generated-->
+    <!--@Table sfseal_company.import_record-->
+    <id column="import_id" jdbcType="BIGINT" property="importId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="last_update_user" jdbcType="VARCHAR" property="lastUpdateUser" />
+    <result column="import_count" jdbcType="BIGINT" property="importCount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    import_id, create_date, last_update_date, last_update_user, import_count
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sfseal_company.import_record
+    where import_id = #{importId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sfseal_company.import_record
+    where import_id = #{importId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="import_id" keyProperty="importId" parameterType="com.wanyun.sfseal.db.model.company.ImportRecordModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.import_record (create_date, last_update_date, last_update_user, 
+      import_count)
+    values (#{createDate,jdbcType=TIMESTAMP}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{lastUpdateUser,jdbcType=VARCHAR}, 
+      #{importCount,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="import_id" keyProperty="importId" parameterType="com.wanyun.sfseal.db.model.company.ImportRecordModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.import_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user,
+      </if>
+      <if test="importCount != null">
+        import_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="importCount != null">
+        #{importCount,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanyun.sfseal.db.model.company.ImportRecordModel">
+    <!--@mbg.generated-->
+    update sfseal_company.import_record
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="importCount != null">
+        import_count = #{importCount,jdbcType=BIGINT},
+      </if>
+    </set>
+    where import_id = #{importId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanyun.sfseal.db.model.company.ImportRecordModel">
+    <!--@mbg.generated-->
+    update sfseal_company.import_record
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      import_count = #{importCount,jdbcType=BIGINT}
+    where import_id = #{importId,jdbcType=BIGINT}
+  </update>
+
+  <select id="getImportRecordByCondition" resultMap="BaseResultMap">
+      SELECT
+        import_id,
+        create_date,
+        last_update_date,
+        last_update_user,
+        import_count
+      FROM
+        sfseal_company.import_record
+  </select>
+</mapper>

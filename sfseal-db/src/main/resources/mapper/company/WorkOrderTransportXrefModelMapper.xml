@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyun.sfseal.db.mapper.company.WorkOrderTransportXrefModelMapper">
+  <resultMap id="BaseResultMap" type="com.wanyun.sfseal.db.model.company.WorkOrderTransportXrefModel">
+    <!--@mbg.generated-->
+    <!--@Table sfseal_company.work_order_transport_xref-->
+    <id column="xref_id" jdbcType="BIGINT" property="xrefId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="last_update_user" jdbcType="VARCHAR" property="lastUpdateUser" />
+    <result column="work_order_id" jdbcType="BIGINT" property="workOrderId" />
+    <result column="tran_id" jdbcType="BIGINT" property="tranId" />
+    <result column="is_active" jdbcType="BOOLEAN" property="isActive" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    xref_id, create_date, last_update_date, last_update_user, work_order_id, tran_id, 
+    is_active
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sfseal_company.work_order_transport_xref
+    where xref_id = #{xrefId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sfseal_company.work_order_transport_xref
+    where xref_id = #{xrefId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="xref_id" keyProperty="xrefId" parameterType="com.wanyun.sfseal.db.model.company.WorkOrderTransportXrefModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.work_order_transport_xref (create_date, last_update_date, last_update_user, 
+      work_order_id, tran_id, is_active
+      )
+    values (#{createDate,jdbcType=TIMESTAMP}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{lastUpdateUser,jdbcType=VARCHAR}, 
+      #{workOrderId,jdbcType=BIGINT}, #{tranId,jdbcType=BIGINT}, #{isActive,jdbcType=BOOLEAN}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="xref_id" keyProperty="xrefId" parameterType="com.wanyun.sfseal.db.model.company.WorkOrderTransportXrefModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.work_order_transport_xref
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user,
+      </if>
+      <if test="workOrderId != null">
+        work_order_id,
+      </if>
+      <if test="tranId != null">
+        tran_id,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="workOrderId != null">
+        #{workOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="tranId != null">
+        #{tranId,jdbcType=BIGINT},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=BOOLEAN},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanyun.sfseal.db.model.company.WorkOrderTransportXrefModel">
+    <!--@mbg.generated-->
+    update sfseal_company.work_order_transport_xref
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="workOrderId != null">
+        work_order_id = #{workOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="tranId != null">
+        tran_id = #{tranId,jdbcType=BIGINT},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=BOOLEAN},
+      </if>
+    </set>
+    where xref_id = #{xrefId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanyun.sfseal.db.model.company.WorkOrderTransportXrefModel">
+    <!--@mbg.generated-->
+    update sfseal_company.work_order_transport_xref
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      work_order_id = #{workOrderId,jdbcType=BIGINT},
+      tran_id = #{tranId,jdbcType=BIGINT},
+      is_active = #{isActive,jdbcType=BOOLEAN}
+    where xref_id = #{xrefId,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sfseal_company.work_order_transport_xref
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="create_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.createDate,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="last_update_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.lastUpdateDate,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="last_update_user = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.lastUpdateUser,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="work_order_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.workOrderId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="tran_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.tranId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="is_active = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.isActive,jdbcType=BOOLEAN}
+        </foreach>
+      </trim>
+    </trim>
+    where xref_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.xrefId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sfseal_company.work_order_transport_xref
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="create_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createDate != null">
+            when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.createDate,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="last_update_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lastUpdateDate != null">
+            when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.lastUpdateDate,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="last_update_user = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lastUpdateUser != null">
+            when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.lastUpdateUser,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="work_order_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.workOrderId != null">
+            when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.workOrderId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="tran_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tranId != null">
+            when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.tranId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_active = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isActive != null">
+            when xref_id = #{item.xrefId,jdbcType=BIGINT} then #{item.isActive,jdbcType=BOOLEAN}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where xref_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.xrefId,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="xref_id" keyProperty="xrefId" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.work_order_transport_xref
+    (create_date, last_update_date, last_update_user, work_order_id, tran_id, is_active
+      )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.createDate,jdbcType=TIMESTAMP}, #{item.lastUpdateDate,jdbcType=TIMESTAMP}, 
+        #{item.lastUpdateUser,jdbcType=VARCHAR}, #{item.workOrderId,jdbcType=BIGINT}, #{item.tranId,jdbcType=BIGINT}, 
+        #{item.isActive,jdbcType=BOOLEAN})
+    </foreach>
+  </insert>
+  <delete id="deleteByWorkOrderId">
+    delete from sfseal_company.work_order_transport_xref
+    where work_order_id in
+    <foreach collection="workOrderIdList" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>

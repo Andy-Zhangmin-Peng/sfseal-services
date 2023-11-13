@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: sfseal-athena
+  flyway:
+    locations: classpath:db/migration
+    # 所有Flyway托管的Schema需要预先定义在此
+    schemas: sfseal_user, sfseal_company
+  profiles:
+    active: JWTAuthCore,local
+  main:
+    allow-bean-definition-overriding: true
+  servlet:
+    multipart:
+      max-file-size: 20MB
+
+server:
+  compression:
+    enabled: true
+    # opt in to content types
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css
+    # not worth the CPU cycles at some point, probably
+    min-response-size: 10240
+#  servlet:
+#    context-path: /qucamp
+
+jwt:
+  key:
+    expiry:
+      timeout: 1800000
+
+db:
+  mapperxml: mapper/*/*Mapper.xml
+
+sfseal:
+  importConfigure:
+    lock[0]:
+      displayName: 盒条码
+      fieldName: boxId
+      valueType: String
+      required: true
+      valueFormat: null
+    lock[1]:
+      displayName: 条形码号
+      fieldName: barCode
+      valueType: String
+      required: true
+      valueFormat: null
+    lock[2]:
+      displayName: 芯片号
+      fieldName: rfid
+      valueType: String
+      required: true
+      valueFormat: null

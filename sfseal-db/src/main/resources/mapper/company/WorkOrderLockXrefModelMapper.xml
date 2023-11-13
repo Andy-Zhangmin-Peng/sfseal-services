@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyun.sfseal.db.mapper.company.WorkOrderLockXrefModelMapper">
+  <resultMap id="BaseResultMap" type="com.wanyun.sfseal.db.model.company.WorkOrderLockXrefModel">
+    <!--@mbg.generated-->
+    <!--@Table sfseal_company.work_order_lock_xref-->
+    <id column="xref_id" jdbcType="BIGINT" property="xrefId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="last_update_user" jdbcType="VARCHAR" property="lastUpdateUser" />
+    <result column="work_order_id" jdbcType="BIGINT" property="workOrderId" />
+    <result column="bar_code" jdbcType="VARCHAR" property="barCode" />
+    <result column="is_active" jdbcType="BOOLEAN" property="isActive" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    xref_id, create_date, last_update_date, last_update_user, work_order_id, bar_code, 
+    is_active
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sfseal_company.work_order_lock_xref
+    where xref_id = #{xrefId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sfseal_company.work_order_lock_xref
+    where xref_id = #{xrefId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="xref_id" keyProperty="xrefId" parameterType="com.wanyun.sfseal.db.model.company.WorkOrderLockXrefModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.work_order_lock_xref (create_date, last_update_date, last_update_user,
+      work_order_id, bar_code, is_active
+      )
+    values (#{createDate,jdbcType=TIMESTAMP}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{lastUpdateUser,jdbcType=VARCHAR}, 
+      #{workOrderId,jdbcType=BIGINT}, #{barCode,jdbcType=VARCHAR}, #{isActive,jdbcType=BOOLEAN}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="xref_id" keyProperty="xrefId" parameterType="com.wanyun.sfseal.db.model.company.WorkOrderLockXrefModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.work_order_lock_xref
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user,
+      </if>
+      <if test="workOrderId != null">
+        work_order_id,
+      </if>
+      <if test="barCode != null">
+        bar_code,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="workOrderId != null">
+        #{workOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="barCode != null">
+        #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=BOOLEAN},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanyun.sfseal.db.model.company.WorkOrderLockXrefModel">
+    <!--@mbg.generated-->
+    update sfseal_company.work_order_lock_xref
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="workOrderId != null">
+        work_order_id = #{workOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="barCode != null">
+        bar_code = #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=BOOLEAN},
+      </if>
+    </set>
+    where xref_id = #{xrefId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanyun.sfseal.db.model.company.WorkOrderLockXrefModel">
+    <!--@mbg.generated-->
+    update sfseal_company.work_order_lock_xref
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      work_order_id = #{workOrderId,jdbcType=BIGINT},
+      bar_code = #{barCode,jdbcType=VARCHAR},
+      is_active = #{isActive,jdbcType=BOOLEAN}
+    where xref_id = #{xrefId,jdbcType=BIGINT}
+  </update>
+  <insert id="addInbatch">
+    insert into sfseal_company.work_order_lock_xref 
+        (create_date, 
+         last_update_date, 
+         last_update_user,
+         work_order_id, 
+         bar_code, 
+         is_active
+        )
+    values 
+    <foreach collection="list"  item="item" separator=",">
+      (
+        #{item.createDate,jdbcType=TIMESTAMP},
+        #{item.lastUpdateDate,jdbcType=TIMESTAMP},
+        #{item.lastUpdateUser,jdbcType=VARCHAR},
+        #{item.workOrderId,jdbcType=BIGINT},
+        #{item.barCode,jdbcType=VARCHAR},
+        #{item.isActive,jdbcType=BOOLEAN}
+      )
+    </foreach>
+  </insert>
+
+  <delete id="deleteByWorkOrderId">
+    delete from sfseal_company.work_order_lock_xref
+    where work_order_id  in
+    <foreach collection="workOrderIdList" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
+</mapper>

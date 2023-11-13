@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyun.sfseal.db.mapper.company.TransportModelMapper">
+  <resultMap id="BaseResultMap" type="com.wanyun.sfseal.db.model.company.TransportModel">
+    <!--@mbg.generated-->
+    <!--@Table sfseal_company.transport-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="last_update_user" jdbcType="VARCHAR" property="lastUpdateUser" />
+    <result column="transprort_id" jdbcType="VARCHAR" property="transprortId" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, create_date, last_update_date, last_update_user, transprort_id, company_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sfseal_company.transport
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from sfseal_company.transport
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.wanyun.sfseal.db.model.company.TransportModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.transport (create_date, last_update_date, last_update_user, 
+      transprort_id, company_id)
+    values (#{createDate,jdbcType=TIMESTAMP}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{lastUpdateUser,jdbcType=VARCHAR}, 
+      #{transprortId,jdbcType=VARCHAR}, #{companyId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.wanyun.sfseal.db.model.company.TransportModel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.transport
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user,
+      </if>
+      <if test="transprortId != null">
+        transprort_id,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="transprortId != null">
+        #{transprortId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanyun.sfseal.db.model.company.TransportModel">
+    <!--@mbg.generated-->
+    update sfseal_company.transport
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateUser != null">
+        last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="transprortId != null">
+        transprort_id = #{transprortId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanyun.sfseal.db.model.company.TransportModel">
+    <!--@mbg.generated-->
+    update sfseal_company.transport
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      last_update_user = #{lastUpdateUser,jdbcType=VARCHAR},
+      transprort_id = #{transprortId,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sfseal_company.transport
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="create_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createDate,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="last_update_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.lastUpdateDate,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="last_update_user = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.lastUpdateUser,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="transprort_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.transprortId,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="company_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.companyId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sfseal_company.transport
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="create_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createDate != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createDate,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="last_update_date = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lastUpdateDate != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.lastUpdateDate,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="last_update_user = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lastUpdateUser != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.lastUpdateUser,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="transprort_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.transprortId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.transprortId,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="company_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.companyId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.companyId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sfseal_company.transport
+    (create_date, last_update_date, last_update_user, transprort_id, company_id)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.createDate,jdbcType=TIMESTAMP}, #{item.lastUpdateDate,jdbcType=TIMESTAMP}, 
+        #{item.lastUpdateUser,jdbcType=VARCHAR}, #{item.transprortId,jdbcType=VARCHAR}, 
+        #{item.companyId,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+
+  <!--  The following is not generated by Mybatis-->
+  <select id="selectTransportsByWorkOrderId" resultMap="BaseResultMap">
+    select
+        transport.id,
+        transport.create_date,
+        transport.last_update_date,
+        transport.last_update_user,
+        transport.transprort_id,
+        transport.company_id
+    from
+        sfseal_company.transport transport
+    left join
+        sfseal_company.work_order_transport_xref wotf
+    ON
+        wotf.tran_id = transport.id
+    WHERE
+        wotf.work_order_id = #{workOrderId,jdbcType=BIGINT}
+  </select>
+  <insert id="upsert" keyColumn="id" keyProperty="id" parameterType="com.wanyun.sfseal.db.model.company.TransportModel" useGeneratedKeys="true">
+    insert into
+        sfseal_company.transport
+            (create_date, last_update_date, last_update_user,transprort_id, company_id)
+      values
+            (#{createDate,jdbcType=TIMESTAMP}, #{lastUpdateDate,jdbcType=TIMESTAMP}, #{lastUpdateUser,jdbcType=VARCHAR},
+              #{transprortId,jdbcType=VARCHAR}, #{companyId,jdbcType=BIGINT})
+    on conflict
+        (transprort_id,company_id)
+    do
+    update set
+      last_update_date= current_timestamp,
+      last_update_user = #{lastUpdateUser,jdbcType=VARCHAR}
+  </insert>
+  <select id="getTransportByTranId" resultMap="BaseResultMap">
+    select
+        id,
+        create_date,
+        last_update_date,
+        last_update_user,
+        transprort_id,
+        company_id
+    from
+        sfseal_company.transport
+    where
+        transprort_id = #{transportId,jdbcType=VARCHAR}
+    and
+        company_id = #{companyId,jdbcType=BIGINT}
+  </select>
+</mapper>
